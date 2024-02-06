@@ -1,0 +1,71 @@
+:root {
+    --red: red;
+    --green: green;
+    --blue: blue;
+    --yellow: yellow;
+    --purple: purple;
+    --orange: orange;
+    --pink: pink;
+    --cyan: cyan;
+    --brown: brown;
+    --lime: lime;
+    --silver: silver;
+    --goldenrod: goldenrod;
+    --mediumvioletred: mediumvioletred;
+    --darkslategray: darkslategray;
+    --indianred: indianred;
+    --steelblue: steelblue;
+    --darkolivegreen: darkolivegreen;
+    --mediumseagreen: mediumseagreen;
+    --darkkhaki: darkkhaki;
+    --crimson: crimson;
+    --darkorange: darkorange;
+    --mediumslateblue: mediumslateblue;
+    --darkgreen: darkgreen;
+    --tomato: tomato;
+    --darkorchid: darkorchid;
+    --mediumaquamarine: mediumaquamarine;
+    --saddlebrown: saddlebrown;
+    --lightseagreen: lightseagreen;
+    --darkcyan: darkcyan;
+    --peru: peru;
+    --lightcoral: lightcoral;
+    --black: black;
+
+    --white: white;
+
+}
+
+* {
+    font-size: 18px;
+    text-overflow: clip;
+}
+
+.boxes {
+    display: grid;
+    grid-template-columns: repeat(32, 1fr);
+    grid-auto-flow: row;
+    height: 90vh;
+    width: 90vh;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    border: 1px solid grey;
+}
+
+.box {
+    aspect-ratio: 1/1;
+    display: grid;
+    place-content: center;
+    padding: 2px;
+    border-left: 1px solid grey;
+    border-top: 1px solid grey;
+    transition: background-color 0.5s ease-out;
+    --background-color: var(--white);
+    background-color: var(--background-color);
+}
+
+input {
+    transform: rotate(90deg);
+}
+

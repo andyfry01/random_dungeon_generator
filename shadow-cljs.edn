@@ -1,0 +1,19 @@
+;; shadow-cljs configuration
+{:source-paths ["src"]
+
+ :dependencies
+ [[reagent "1.0.0-alpha2"]
+  [re-frame "1.0.0"]
+  [com.cognitect/transit-cljs "0.8.256"]
+  [com.taoensso/sente "1.16.0-alpha1"]
+  [metosin/reitit-frontend "0.5.11"]
+  [metosin/reitit "0.5.11"]
+  [metosin/reitit-spec "0.5.11"]
+  [hiccup/hiccup "2.0.0-alpha2"]]
+ :nrepl {:port 9000}
+ :dev-http {8080 "public"}
+ :builds
+ {:frontend
+  {:target  :browser
+   :modules {:main {:init-fn app.core/init}}}}}
+   
