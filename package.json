@@ -1,6 +1,6 @@
 {
-  "name": "sente-example-app",
-  "version": "0.0.1",
+  "name": "Random Dungeon Generator",
+  "version": "1.0.0",
   "devDependencies": {
     "shadow-cljs": "2.10.22"
   },

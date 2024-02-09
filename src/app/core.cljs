@@ -2,10 +2,31 @@
   (:require [reagent.dom]
             [goog.dom :as gdom]
             [reagent.core :as r]
-            [app.pages :refer [root]]))
+
+            [reitit.frontend :as rf]
+            [reitit.frontend.easy :as rfe]
+            [reitit.coercion.spec :as rss]
+            [reitit.frontend.controllers :as rfc]
+
+            [app.etc :refer [pieces-page]]
+            [app.main :refer [root]]))
+
+(def routes
+  [["/" {:name ::root :view root}]
+   ["/pieces" {:name ::pieces :view pieces-page}]])
+
+(defonce match (r/atom nil))
+
+(defn current-page []
+  (println "matchh? " @match)
+  [:main
+   (if @match
+     (let [view (:view (:data @match))]
+       [view @match]))])
+
 
 (defn- render []
-  (reagent.dom/render [root] (gdom/getElement "root")))
+  (reagent.dom/render [current-page] (gdom/getElement "root")))
 
 (defn ^:export init
   []
@@ -17,6 +38,7 @@
               (when new-match
                 (assoc new-match
                        :controllers (rfc/apply-controllers (:controllers old-match) new-match))))))
+   ;; set to false to enable HistoryAPI
    {:use-fragment false})
   (render))
 

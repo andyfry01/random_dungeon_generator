@@ -1,71 +1,173 @@
 :root {
-    --red: red;
-    --green: green;
-    --blue: blue;
-    --yellow: yellow;
-    --purple: purple;
-    --orange: orange;
-    --pink: pink;
-    --cyan: cyan;
-    --brown: brown;
-    --lime: lime;
-    --silver: silver;
-    --goldenrod: goldenrod;
-    --mediumvioletred: mediumvioletred;
-    --darkslategray: darkslategray;
-    --indianred: indianred;
-    --steelblue: steelblue;
-    --darkolivegreen: darkolivegreen;
-    --mediumseagreen: mediumseagreen;
-    --darkkhaki: darkkhaki;
-    --crimson: crimson;
-    --darkorange: darkorange;
-    --mediumslateblue: mediumslateblue;
-    --darkgreen: darkgreen;
-    --tomato: tomato;
-    --darkorchid: darkorchid;
-    --mediumaquamarine: mediumaquamarine;
-    --saddlebrown: saddlebrown;
-    --lightseagreen: lightseagreen;
-    --darkcyan: darkcyan;
-    --peru: peru;
-    --lightcoral: lightcoral;
-    --black: black;
-
-    --white: white;
-
+    --cell-color: grey;
+    --blank-color: transparent;
+    --transition-color-1: aliceblue;
+    --transition-color-2: dodgerblue;
+    --cell-anim-speed-1: 1s;
+    --cell-anim-speed-2: 1.5s;
+    --unit-anim-speed: 1000ms;
 }
 
 * {
-    font-size: 18px;
-    text-overflow: clip;
+    font-size: 16px;
 }
 
-.boxes {
+body {
+    padding: 2rem;
+    margin-bottom: 50vh;
+}
+
+button {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 4px;
+    padding-inline: 2rem;
+    padding-block: 1rem;
+    font-size: 1.5rem;
+    margin-block: 1rem;
+}
+
+.cell {
+    background: var(--cell-color);
+    animation: var(--cell-anim-speed-1) color-1 ease-in;
+}
+
+.blank {
+    background: var(--blank-color);
+}
+
+.cell:nth-child(3n) {
+    animation: var(--cell-anim-speed-2) color-2 ease-in;
+}
+
+.unit {
     display: grid;
-    grid-template-columns: repeat(32, 1fr);
-    grid-auto-flow: row;
-    height: 90vh;
-    width: 90vh;
-    overflow: hidden;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     aspect-ratio: 1/1;
-    margin: 0 auto;
-    border: 1px solid grey;
+    width: 100%;
+    height: auto;
+    animation: var(--unit-anim-speed) fade-in ease-in;
 }
 
-.box {
-    aspect-ratio: 1/1;
+details, button  {
+    cursor: pointer;
+}
+
+summary {
+    font-size: 1.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.25rem;
+}
+
+li {
+    margin-block: 1rem;
+}
+
+.unit:nth-child(5n) {
+    animation: 1000ms translate-x-neg ease-in;
+}
+
+.unit:nth-child(7n) {
+    animation: 500ms translate-y-neg ease-in;
+}
+
+.quarter-turn {
+    transform: rotate(.25turn)
+}
+
+.half-turn {
+    transform: rotate(.5turn)
+}
+
+.three-quarter-turn {
+    transform: rotate(.75turn)
+}
+
+.weight-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.weight-row {
+    display: flex;
+    flex-direction: row;
+}
+.weight-row form:nth-child(1) {
+    margin-right: 2rem;
+}
+
+
+.map {
+    --height: 10;
+    --width: 10;
     display: grid;
-    place-content: center;
-    padding: 2px;
-    border-left: 1px solid grey;
-    border-top: 1px solid grey;
-    transition: background-color 0.5s ease-out;
-    --background-color: var(--white);
-    background-color: var(--background-color);
+    grid-template-rows: repeat(var(--height), 1fr);
+    grid-template-columns: repeat(var(--width), 1fr);
+    width: 90vw;
+    height: calc(90vw * var(--width) / 90vw * var(--height))
 }
 
-input {
-    transform: rotate(90deg);
+.size-selector {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin-inline: 1rem;
 }
 
+.dimension-ui {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.size-selector p {
+    margin-inline: 1rem;
+}
+
+
+/* Animations keyframes for rows and cells */
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes color-1 {
+    0% { background: var(--transition-color-1); }
+    50% { background: var(--transition-color-2); }
+    100% { background: var(--cell-color); }
+}
+
+@keyframes color-2 {
+    0% { background: transparent; }
+    100% { background: var(--cell-color); }
+}
+
+@keyframes translate-y-neg {
+    0% { transform: translateY(-25%); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes translate-x-neg {
+    0% { transform: translateX(-75%); }
+    100% { transform: translateX(0); }
+}
+
+
+.pieces-demo .unit {
+    max-width: 10rem;
+    animation: none !important;
+    border: 1px solid black;
+}
+
+.pieces-demo h2 {
+    margin-block: 1rem;
+}
